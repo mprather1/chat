@@ -8,23 +8,20 @@ var Cookie = require("js-cookie");
 var ChatWindowView = Backbone.Marionette.View.extend({
   template: require("../templates/chat-window-view-template.html"),
   initialize: function(){
+    var cookie = Cookie.get('username');
     var messages = new Messages();
-    var posted_cookie = Cookie.get('username');
+    messages.fetch({
+      success: function(){
+        console.log("Successfully fetched messages...")
+      }
+    })
     socket.on('chat message', function(msg){
       messages.add(msg);
-      if(msg.posted_by === posted_cookie){
-        $('.message-view:last').addClass('self');
-      } else {
-        $('.message-view:last').addClass('other');
-      }
-      // var audio = new Audio(__dirname + '/app/public/sounds/ding.wav');
-      // audio.play();
+    window.scrollTo(0, document.body.scrollHeight);
+      
     });
     this.messages = messages;
-    this.posted_cookie = posted_cookie;
-    // socket.on('user connected', function(msg) {
-    //   $('.user-connected').html($('<li>').text(msg + " has joined the chat."))
-    // })
+    this.cookie = cookie;
   },
   regions: {
     main: {
@@ -39,7 +36,8 @@ var ChatWindowView = Backbone.Marionette.View.extend({
   },
   handleClick: function(e){
     e.preventDefault();
-    var message = new Message({ message: $('#m').val(), posted_by: this.posted_cookie });
+    var message = new Message({ content: $('#m').val(), author: this.cookie });
+    message.save()
     socket.emit('chat message', message);
 
     $('#m').val('');

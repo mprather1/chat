@@ -21,7 +21,7 @@ var time = {
       hours = hours - 12;
     }
     if (hours < 10){
-      return "0" + hours
+      return hours
     } else {
       return hours
     }
