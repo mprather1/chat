@@ -49,7 +49,7 @@ var time = {
   },
   currentDate: function(d){
     return this.day(d) + ", " + this.month(d) + " " + this.date(d) + ", " + this.year(d);
-  }
+  },
 };
 
 module.exports = time;

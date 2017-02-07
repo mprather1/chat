@@ -21,6 +21,12 @@ VALUES ('Kill', 'Bill', 'management', 'killbill', 'password', '5555555555', 'kil
 INSERT INTO users ( first_name, last_name, title, username, password, phone, email, admin )
 VALUES ('Mike', 'Prather', 'IT Support Specialist', 'mprather', 'password', '1234567890', 'mikeprather@email.com', true);
 
+CREATE TABLE messages (
+  ID SERIAL PRIMARY KEY,
+    content VARCHAR,
+    author VARCHAR
+);
+
 DROP DATABASE IF EXISTS api_test;
 CREATE DATABASE api_test;
 
@@ -34,7 +40,15 @@ CREATE TABLE users (
     username VARCHAR,
     password VARCHAR,
     phone VARCHAR,
-    email VARCHAR
+    email VARCHAR,
+    admin BOOLEAN DEFAULT false
+
+);
+
+CREATE TABLE messages (
+  ID SERIAL PRIMARY KEY,
+    content VARCHAR,
+    author VARCHAR
 );
 
 DROP DATABASE IF EXISTS api_production;
@@ -50,5 +64,12 @@ CREATE TABLE users (
     username VARCHAR,
     password VARCHAR,
     phone VARCHAR,
-    email VARCHAR
+    email VARCHAR,
+    admin BOOLEAN DEFAULT false
+);
+
+CREATE TABLE messages (
+  ID SERIAL PRIMARY KEY,
+    content VARCHAR,
+    author VARCHAR
 );
