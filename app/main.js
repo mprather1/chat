@@ -1,5 +1,5 @@
 global.jQuery = require("jquery");
-global.io = require("socket.io-client")
+global.io = require("socket.io-client");
 // console.log(global.io)
 require("bootstrap");
 require("./public/css/style.scss");

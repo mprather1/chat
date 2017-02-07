@@ -1,5 +1,5 @@
 var Marionette = require("marionette");
-var LoginView = require("./views/LoginView")
+var LoginView = require("./views/LoginView");
 var ChatWindowView = require("./views/ChatWindowView");
 
 var Controller = Marionette.Object.extend({
@@ -7,7 +7,7 @@ var Controller = Marionette.Object.extend({
   initialize: function(options){
     
     this.app = options.app;
-    this.chatWindowView = new ChatWindowView()
+    this.chatWindowView = new ChatWindowView();
     
   },
   login: function(){
