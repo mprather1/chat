@@ -26,11 +26,24 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+
 var username = '';
+
 app.use(function(req, res, next){
   username = req.session.passport;
+  if(req.session.passport != undefined){
+      res.cookie('username', req.session.passport.user)
+  }
   next();
 });
+
+app.use(function(req, res, next){
+  if(req.session.passport != undefined){
+      res.cookie('username', req.session.passport.user)
+  }
+
+  next()
+})
 
 require('./authentication').init(app, passport);
 

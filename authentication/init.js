@@ -23,7 +23,7 @@ function initPassport () {
       db.one('select * from users where username = $1', username)
       .then(function(user){
         if(!user){ return done(null, false) }
-        if(!user.admin || password != user.password){
+        if(password != user.password){
           return done(null, false);
         }
         return done(null, user), user;

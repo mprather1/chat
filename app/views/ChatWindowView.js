@@ -3,21 +3,30 @@ var Message = require("../models/Message");
 var Messages = require("../collections/Messages");
 var MessageView = require("./MessageView");
 var MessagesView = require("./MessagesView")
+var Cookie = require("js-cookie");
 
 var ChatWindowView = Backbone.Marionette.View.extend({
   template: require("../templates/chat-window-view-template.html"),
   initialize: function(){
     var messages = new Messages();
+    var posted_cookie = Cookie.get('username')
     socket.on('chat message', function(msg){
-      var message = new Message({ message: msg })
-      messages.add(message)
+      console.log(msg)
+      console.log(posted_cookie)
+      messages.add(msg)
+      if(msg.posted_by === posted_cookie){
+        $('.message-view:last').addClass('self')
+      } else {
+        $('.message-view:last').addClass('other')
+      }
       // var audio = new Audio(__dirname + '/app/public/sounds/ding.wav');
       // audio.play();
     })
     this.messages = messages
-    socket.on('user connected', function(msg) {
-      $('.user-connected').html($('<li>').text(msg + " has joined the chat."))
-    })
+    this.posted_cookie = posted_cookie
+    // socket.on('user connected', function(msg) {
+    //   $('.user-connected').html($('<li>').text(msg + " has joined the chat."))
+    // })
   },
   regions: {
     main: {
@@ -32,7 +41,11 @@ var ChatWindowView = Backbone.Marionette.View.extend({
   },
   handleClick: function(e){
     e.preventDefault()
-    socket.emit('chat message', $('#m').val());
+
+    var message = new Message({ message: $('#m').val(), posted_by: this.posted_cookie })
+  
+    socket.emit('chat message', message);
+
     $('#m').val('');
     return false;
   }  
