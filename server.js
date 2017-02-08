@@ -11,6 +11,7 @@ var routes = require("./routes");
 var port = process.env.PORT || 8000;
 var session = require("express-session");
 var RedisStore = require("connect-redis")(session);
+var fileUpload = require('express-fileupload');
 var passport = require("passport");
 var store = new RedisStore({
     url: config.redisStore.url
@@ -53,12 +54,32 @@ app.post('/login', passport.authenticate('local', {
   failureRedirect: '/loginFailure'
 }));
 
+app.use(fileUpload())
+
+app.post('/upload', function(req, res){
+  var file;
+  
+  if(!req.files){
+    res.send("No files were uploaded");
+  }
+  file = req.files.upload
+  file.mv('./app/static/pictures/' + file.name, function(err){
+    if(err){
+      res.status(500)
+      .send(err)
+    } else {
+      res.send("File Uploaded")
+    }    
+  })
+
+})
+
 app.use('/api', routes);
 
 io.on('connection', function(socket){
     socket.on("chat message", function(msg){
       io.emit('chat message', msg);
-      socket.broadcast.emit('play', { sound: '/ding.mp3' })  
+      socket.broadcast.emit('play', { sound: '/sounds/ding.mp3' })  
     });
 });
 

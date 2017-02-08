@@ -1,4 +1,5 @@
 npm install
 webpack
 bower install
-cp app/public/sounds/ding.mp3 app/static
+cp -rv app/public/sounds/ app/static/
+mkdir app/static/pictures
