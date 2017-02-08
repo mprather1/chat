@@ -3,12 +3,21 @@ var UserFormView = Backbone.Marionette.View.extend({
   events: {
     'click #user-submit': 'handleClick'
   },
+  id: 'user-form-view',
+  className: 'panel panel-default',
   handleClick: function(e){
     e.preventDefault()
+    
     var formData = new FormData()
-    formData.append('upload', $('#filebox')[0].files[0])
+    formData.append('upload', $('#avatar')[0].files[0])
+    formData.append('first_name', $('[name="first_name"]').val())
+    formData.append('last_name', $('[name="last_name"]').val())
+    formData.append('username', $('[name="username"]').val())
+    formData.append('password', $('[name="password"]').val())
+    formData.append('avatar', "./static/pictures/" + $('#avatar')[0].files[0].name)
+    
     $.ajax({
-      url: '/upload',
+      url: '/api/users',
       type: 'POST',
       data: formData,
       processData: false,

@@ -24,13 +24,20 @@ function getSingleUser(req, res, next){
 }
 
 function createUser(req, res, next){
-  db.none('insert into users(first_name, last_name, title, username, password, phone, email)' + 'values(${first_name}, ${last_name}, ${title}, ${username}, ${password}, ${phone}, ${email})', req.body)
+  db.none('insert into users( first_name, last_name, username, password, avatar )' + 'values( ${first_name}, ${last_name},  ${username}, ${password}, ${avatar} )', req.body)
   .then(function(){
-    res.status(200)
+    var file;
+    if(!req.files){
+      res.send("No files were uploaded")
+    }
+    file = req.files.upload
+    file.mv('./app/static/pictures/' + file.name, function(){
+      res.status(200)
       .json({
         status: 'success',
         message: 'Inserted ONE user'
       });
+    })
   })
   .catch(function(err){
     return next(err);

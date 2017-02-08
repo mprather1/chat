@@ -56,24 +56,6 @@ app.post('/login', passport.authenticate('local', {
 
 app.use(fileUpload())
 
-app.post('/upload', function(req, res){
-  var file;
-  
-  if(!req.files){
-    res.send("No files were uploaded");
-  }
-  file = req.files.upload
-  file.mv('./app/static/pictures/' + file.name, function(err){
-    if(err){
-      res.status(500)
-      .send(err)
-    } else {
-      res.send("File Uploaded")
-    }    
-  })
-
-})
-
 app.use('/api', routes);
 
 io.on('connection', function(socket){

@@ -7,19 +7,17 @@ CREATE TABLE users (
   ID SERIAL PRIMARY KEY,
     first_name VARCHAR,
     last_name VARCHAR,
-    title VARCHAR,
     username VARCHAR,
     password VARCHAR,
-    phone VARCHAR,
-    email VARCHAR,
+    avatar VARCHAR,
     admin BOOLEAN DEFAULT false
 );
   
-INSERT INTO users ( first_name, last_name, title, username, password, phone, email )
-VALUES ('Kill', 'Bill', 'management', 'killbill', 'password', '5555555555', 'killbill@kill.bill');
+INSERT INTO users ( first_name, last_name, username, password )
+VALUES ('Kill', 'Bill', 'killbill', 'password');
 
-INSERT INTO users ( first_name, last_name, title, username, password, phone, email, admin )
-VALUES ('Mike', 'Prather', 'IT Support Specialist', 'mprather', 'password', '1234567890', 'mikeprather@email.com', true);
+INSERT INTO users ( first_name, last_name, username, password, admin )
+VALUES ('Mike', 'Prather', 'mprather', 'password', true);
 
 CREATE TABLE messages (
   ID SERIAL PRIMARY KEY,
@@ -37,13 +35,10 @@ CREATE TABLE users (
   ID SERIAL PRIMARY KEY,
     first_name VARCHAR,
     last_name VARCHAR,
-    title VARCHAR,
     username VARCHAR,
     password VARCHAR,
-    phone VARCHAR,
-    email VARCHAR,
+    avatar VARCHAR,
     admin BOOLEAN DEFAULT false
-
 );
 
 CREATE TABLE messages (
@@ -62,11 +57,9 @@ CREATE TABLE users (
   ID SERIAL PRIMARY KEY,
     first_name VARCHAR,
     last_name VARCHAR,
-    title VARCHAR,
     username VARCHAR,
     password VARCHAR,
-    phone VARCHAR,
-    email VARCHAR,
+    avatar VARCHAR,
     admin BOOLEAN DEFAULT false
 );
 
