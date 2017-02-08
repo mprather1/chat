@@ -30,7 +30,7 @@ app.use(session({
 
 app.use(function(req, res, next){
   if(req.session.passport != undefined){
-      res.cookie('username', req.session.passport.user)
+      res.cookie('userID', req.session.passport.user)
   }
   next();
 });

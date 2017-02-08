@@ -4,11 +4,11 @@ var db = require("../db/init");
 var authenticationMiddleware = require('./middleware')
 
 passport.serializeUser(function (user, done) {
-  done(null, user.username);
+  done(null, user.id);
 })
 
 passport.deserializeUser(function (user, done) {
-  db.one('select * from users where username = $1', user)
+  db.one('select * from users where id = $1', user)
   .then(function(data){
     return done(null, data), data;
   })

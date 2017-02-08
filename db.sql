@@ -23,7 +23,8 @@ CREATE TABLE messages (
   ID SERIAL PRIMARY KEY,
     content VARCHAR,
     author VARCHAR,
-    time VARCHAR
+    time VARCHAR,
+    avatar_img VARCHAR
 );
 
 DROP DATABASE IF EXISTS api_test;
@@ -45,7 +46,8 @@ CREATE TABLE messages (
   ID SERIAL PRIMARY KEY,
     content VARCHAR,
     author VARCHAR,
-    time VARCHAR
+    time VARCHAR,
+    avatar_img VARCHAR
 );
 
 DROP DATABASE IF EXISTS api_production;
@@ -67,5 +69,6 @@ CREATE TABLE messages (
   ID SERIAL PRIMARY KEY,
     content VARCHAR,
     author VARCHAR,
-    time VARCHAR
+    time VARCHAR,
+    avatar_img VARCHAR
 );
