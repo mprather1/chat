@@ -24,7 +24,7 @@ function getSingleMessage(req, res, next){
 }
 
 function createMessage(req, res, next){
-  db.none('insert into messages(content, author)' + 'values(${content}, ${author})', req.body)
+  db.none('insert into messages(content, author, time)' + 'values(${content}, ${author}, ${time})', req.body)
   .then(function(){
     res.status(200)
     .json({

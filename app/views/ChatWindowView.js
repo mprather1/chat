@@ -17,8 +17,7 @@ var ChatWindowView = Backbone.Marionette.View.extend({
     })
     socket.on('chat message', function(msg){
       messages.add(msg);
-    window.scrollTo(0, document.body.scrollHeight);
-      
+      window.scrollTo(0, document.body.scrollHeight);
     });
     this.messages = messages;
     this.cookie = cookie;
@@ -36,7 +35,7 @@ var ChatWindowView = Backbone.Marionette.View.extend({
   },
   handleClick: function(e){
     e.preventDefault();
-    var message = new Message({ content: $('#m').val(), author: this.cookie });
+    var message = new Message({ content: $('#m').val(), author: this.cookie, time: new Date()});
     message.save()
     socket.emit('chat message', message);
 

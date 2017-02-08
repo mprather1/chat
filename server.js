@@ -30,7 +30,6 @@ app.use(session({
 var username = '';
 
 app.use(function(req, res, next){
-  username = req.session.passport;
   if(req.session.passport != undefined){
       res.cookie('username', req.session.passport.user)
   }
@@ -67,7 +66,6 @@ app.post('/login', passport.authenticate('local', {
 app.use('/api', routes);
 
 io.on('connection', function(socket){
-    socket.broadcast.emit('user connected', username.user);
     socket.on("chat message", function(msg){
       io.emit('chat message', msg);
     });

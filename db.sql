@@ -24,7 +24,8 @@ VALUES ('Mike', 'Prather', 'IT Support Specialist', 'mprather', 'password', '123
 CREATE TABLE messages (
   ID SERIAL PRIMARY KEY,
     content VARCHAR,
-    author VARCHAR
+    author VARCHAR,
+    time VARCHAR
 );
 
 DROP DATABASE IF EXISTS api_test;
@@ -48,7 +49,8 @@ CREATE TABLE users (
 CREATE TABLE messages (
   ID SERIAL PRIMARY KEY,
     content VARCHAR,
-    author VARCHAR
+    author VARCHAR,
+    time VARCHAR
 );
 
 DROP DATABASE IF EXISTS api_production;
@@ -71,5 +73,6 @@ CREATE TABLE users (
 CREATE TABLE messages (
   ID SERIAL PRIMARY KEY,
     content VARCHAR,
-    author VARCHAR
+    author VARCHAR,
+    time VARCHAR
 );
