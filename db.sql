@@ -12,12 +12,6 @@ CREATE TABLE users (
     avatar VARCHAR,
     admin BOOLEAN DEFAULT false
 );
-  
-INSERT INTO users ( first_name, last_name, username, password )
-VALUES ('Kill', 'Bill', 'killbill', 'password');
-
-INSERT INTO users ( first_name, last_name, username, password, admin )
-VALUES ('Mike', 'Prather', 'mprather', 'password', true);
 
 CREATE TABLE messages (
   ID SERIAL PRIMARY KEY,
@@ -26,6 +20,18 @@ CREATE TABLE messages (
     time VARCHAR,
     avatar_img VARCHAR
 );
+
+CREATE TABLE conversations (
+  ID SERIAL PRIMARY KEY,
+  title VARCHAR
+);
+  
+INSERT INTO users ( first_name, last_name, username, password )
+VALUES ('Kill', 'Bill', 'killbill', 'password');
+
+INSERT INTO users ( first_name, last_name, username, password, admin )
+VALUES ('Mike', 'Prather', 'mprather', 'password', true);
+
 
 DROP DATABASE IF EXISTS api_test;
 CREATE DATABASE api_test;
@@ -50,6 +56,11 @@ CREATE TABLE messages (
     avatar_img VARCHAR
 );
 
+CREATE TABLE conversations (
+  ID SERIAL PRIMARY KEY,
+  title VARCHAR
+);
+
 DROP DATABASE IF EXISTS api_production;
 CREATE DATABASE api_production;
 
@@ -71,4 +82,9 @@ CREATE TABLE messages (
     author VARCHAR,
     time VARCHAR,
     avatar_img VARCHAR
+);
+
+CREATE TABLE conversations (
+  ID SERIAL PRIMARY KEY,
+  title VARCHAR
 );

@@ -27,7 +27,7 @@ describe('Messages', function(){
   it('should add a SINGLE message on /messages POST', function(done) {
     chai.request(server)
     .post('/api/messages')
-    .send({ "content":"test", 'author':'id' })
+    .send({ "content":"test", 'author': 1, "avatar_img": "test.jpg", "time": Date.now() })
     .end(function(err, res){
       expect(res).to.have.status(200);
       expect(res).to.be.json;
@@ -36,7 +36,7 @@ describe('Messages', function(){
     });
   });
   
-  it('should list ALL messages on /messages/active GET', function(done){
+  it('should list ALL messages on /messages GET', function(done){
     chai.request(server)
       .get('/api/messages')
       .end(function(err, res){

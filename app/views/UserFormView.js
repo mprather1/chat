@@ -24,7 +24,7 @@ var UserFormView = Backbone.Marionette.View.extend({
       contentType: false,
       success: function(data){
         console.log(data);
-        Backbone.history.navigate('#login', { trigger: true})
+        Backbone.history.navigate('#login', { trigger: true});
       }
     });
     
