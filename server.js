@@ -27,8 +27,6 @@ app.use(session({
   saveUninitialized: false
 }));
 
-var username = '';
-
 app.use(function(req, res, next){
   if(req.session.passport != undefined){
       res.cookie('username', req.session.passport.user)
@@ -60,6 +58,7 @@ app.use('/api', routes);
 io.on('connection', function(socket){
     socket.on("chat message", function(msg){
       io.emit('chat message', msg);
+      socket.broadcast.emit('play', { sound: '/ding.mp3' })  
     });
 });
 

@@ -15,6 +15,10 @@ var ChatWindowView = Backbone.Marionette.View.extend({
         console.log("Successfully fetched messages...")
       }
     })
+    socket.on('play', function(audio) {
+      var sound = new Audio(audio.sound);
+      sound.play();
+    })
     socket.on('chat message', function(msg){
       messages.add(msg);
       window.scrollTo(0, document.body.scrollHeight);
@@ -38,7 +42,6 @@ var ChatWindowView = Backbone.Marionette.View.extend({
     var message = new Message({ content: $('#m').val(), author: this.cookie, time: new Date()});
     message.save()
     socket.emit('chat message', message);
-
     $('#m').val('');
     return false;
   }  
