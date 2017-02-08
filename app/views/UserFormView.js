@@ -3,8 +3,8 @@ var UserFormView = Backbone.Marionette.View.extend({
   events: {
     'click #user-submit': 'handleClick'
   },
-  id: 'user-form-view',
-  className: 'panel panel-default',
+  // id: 'form-view',
+  className: 'panel panel-default form-view',
   handleClick: function(e){
     e.preventDefault();
     
@@ -24,8 +24,10 @@ var UserFormView = Backbone.Marionette.View.extend({
       contentType: false,
       success: function(data){
         console.log(data);
+        Backbone.history.navigate('#login', { trigger: true})
       }
     });
+    
   }
 });
 
