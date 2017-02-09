@@ -1,7 +1,7 @@
 var db = require("../init");
 
 function getAllMessages(req, res, next){
-  db.any('select * from messages')
+  db.any('select * from messages where _conversation = $1', parseInt(req.params.id))
   .then(function(data){
     res.status(200)
     .json(data);
@@ -24,7 +24,8 @@ function getSingleMessage(req, res, next){
 }
 
 function createMessage(req, res, next){
-  db.none('insert into messages(content, author, time, avatar_img)' + 'values( ${content}, ${author}, ${time}, ${avatar_img} )', req.body)
+  console.log(req.body)
+  db.none('insert into messages(content, author, time, avatar_img, _conversation )' + 'values( $1, $2, $3, $4, $5 )', [req.body.content, req.body.author, req.body.time, req.body.avatar_img, parseInt(req.params.id)])
   .then(function(){
     res.status(200)
     .json({
@@ -37,9 +38,8 @@ function createMessage(req, res, next){
   });
 }
 
-
 module.exports = {
   getAllMessages: getAllMessages,
   getSingleMessage: getSingleMessage,
-  createMessage: createMessage
-}
+  createMessage: createMessage,
+};

@@ -9,7 +9,8 @@ var Router = Marionette.AppRouter.extend({
   appRoutes: {
     '': 'index',
     'login': 'login',
-    'new/user': 'userFormView'
+    'new/user': 'userFormView',
+    'conversations/:id': 'getSingleConversation'
   }
 });
 

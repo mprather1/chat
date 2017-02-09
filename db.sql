@@ -18,7 +18,8 @@ CREATE TABLE messages (
     content VARCHAR,
     author VARCHAR,
     time VARCHAR,
-    avatar_img VARCHAR
+    avatar_img VARCHAR,
+    _conversation INTEGER
 );
 
 CREATE TABLE conversations (
@@ -31,6 +32,9 @@ VALUES ('Kill', 'Bill', 'killbill', 'password');
 
 INSERT INTO users ( first_name, last_name, username, password, admin )
 VALUES ('Mike', 'Prather', 'mprather', 'password', true);
+
+INSERT INTO conversations ( title )
+VALUES ('conversation 1');
 
 
 DROP DATABASE IF EXISTS api_test;
@@ -53,7 +57,8 @@ CREATE TABLE messages (
     content VARCHAR,
     author VARCHAR,
     time VARCHAR,
-    avatar_img VARCHAR
+    avatar_img VARCHAR,
+    _conversation INTEGER
 );
 
 CREATE TABLE conversations (
@@ -81,7 +86,8 @@ CREATE TABLE messages (
     content VARCHAR,
     author VARCHAR,
     time VARCHAR,
-    avatar_img VARCHAR
+    avatar_img VARCHAR,
+    _conversation INTEGER
 );
 
 CREATE TABLE conversations (

@@ -7,20 +7,16 @@ var User = require("../models/User");
 
 var ChatWindowView = Backbone.Marionette.View.extend({
   template: require("../templates/chat-window-view-template.html"),
-  initialize: function(){
+  initialize: function(options){
     var cookie = Cookie.get('userID');
     var author = new User({ id: cookie});
+    this._conversation = options._conversation
     author.fetch({
       success: function(){
         console.log("Successfully fetched user...");
       }
     });
-    var messages = new Messages();
-    messages.fetch({
-      success: function(){
-        console.log("Successfully fetched messages...");
-      }
-    });
+    var messages = options.messages
     socket.on('play', function(audio) {
       var sound = new Audio(audio.sound);
       sound.play();
@@ -45,7 +41,7 @@ var ChatWindowView = Backbone.Marionette.View.extend({
   },
   handleClick: function(e){
     e.preventDefault();
-    var message = new Message({ content: $('#m').val(), author: this.author.get('id'), time: new Date(), avatar_img: this.author.get('avatar') });
+    var message = new Message({ content: $('#m').val(), author: this.author.get('id'), time: new Date(), avatar_img: this.author.get('avatar'), _conversation: this._conversation.get('id') });
     message.save();
     socket.emit('chat message', message);
     $('#m').val('');

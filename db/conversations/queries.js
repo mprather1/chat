@@ -36,14 +36,17 @@ function createConversation(req, res, next){
 
 function removeConversation(req, res, next){
   var conversationID = parseInt(req.params.id);
-  db.result('delete from conversations wher id = $1', conversationID)
+  db.result('delete from conversations where id = $1', conversationID)
   .then(function(data){
     res.status(200)
     .json({
       status: 'success',
       message: `Removed ${data.rowCount} conversation`
     });
-  });
+  })
+  .catch(function(err){
+    return next(err)
+  })
   
 }
 

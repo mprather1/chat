@@ -12,10 +12,6 @@ router.route("/users/:id")
   .get(users.getSingleUser)
   .put(users.updateUser)
   .delete(users.removeUser)
-  
-router.route('/messages')
-  .get(messages.getAllMessages)
-  .post(messages.createMessage)
 
 router.route('/messages/:id')
   .get(messages.getSingleMessage)
@@ -27,5 +23,9 @@ router.route('/conversations')
 router.route('/conversations/:id')
   .get(conversations.getSingleConversation)
   .delete(conversations.removeConversation)
+  
+router.route('/conversations/:id/messages')
+  .get(messages.getAllMessages)
+  .post(messages.createMessage)
 
 module.exports = router;
