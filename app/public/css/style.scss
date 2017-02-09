@@ -3,6 +3,22 @@ body { padding-top: 5px; }
   margin-top: 15px;
 }
 
+// .avatar-lg {
+//   height: 200px;
+// }
+
+.header img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  
+}
+.header h1 {
+  position: relative;
+  top: 18px;
+  left: 10px;
+}
+
 .form-view {
   width: 400px;
   margin: 20px auto;

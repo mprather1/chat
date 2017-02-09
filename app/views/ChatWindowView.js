@@ -39,6 +39,9 @@ var ChatWindowView = Backbone.Marionette.View.extend({
   onRender: function(){
     this.showChildView('main', new MessagesView({ collection: this.messages }));
   },
+  onAttach: function(){
+    window.scrollTo(0, document.body.scrollHeight);  
+  },
   handleClick: function(e){
     e.preventDefault();
     var message = new Message({ content: $('#m').val(), author: this.author.get('id'), time: new Date(), avatar_img: this.author.get('avatar'), _conversation: this._conversation.get('id') });
